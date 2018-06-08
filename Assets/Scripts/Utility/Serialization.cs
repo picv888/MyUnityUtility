@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 
-// List<T>
+//对List的封装，使List可以序列化、反序列化
 [Serializable]
 public class Serialization<T> {
     [SerializeField]
@@ -16,7 +16,8 @@ public class Serialization<T> {
     }
 }
 
-// Dictionary<TKey, TValue>
+
+//对Dictionary的封装，使Dictionary可以序列化、反序列化
 [Serializable]
 public class Serialization<TKey, TValue> : ISerializationCallbackReceiver {
     [SerializeField]

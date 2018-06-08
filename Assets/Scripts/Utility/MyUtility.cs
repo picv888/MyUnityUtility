@@ -18,7 +18,7 @@ public class MyUtility {
     private MyUtility() { }
 
     /// <summary>
-    /// 是否在UI组件上点击,点击阶段为Began
+    /// 判断是否在UI组件上点击,点击阶段为Began
     /// </summary>
     /// <returns><c>true</c>, if pointer over user interface was ised, <c>false</c> otherwise.</returns>
     public bool IsClickOnUI() {
@@ -31,7 +31,7 @@ public class MyUtility {
     }
 
     /// <summary>
-    /// 鼠标是否在UI组件上
+    /// 判断鼠标是否在UI组件上
     /// </summary>
     /// <returns><c>true</c>, if pointer over user interface was ised, <c>false</c> otherwise.</returns>
     public bool IsPointerOnUI() {
