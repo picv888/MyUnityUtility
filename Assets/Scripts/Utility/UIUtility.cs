@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class MyUtility {
+public class UIUtility {
 
-    private static MyUtility instance;
-    public static MyUtility Instance {
+    private static UIUtility instance;
+    public static UIUtility Instance {
         get {
             if (null == instance) {
-                instance = new MyUtility();
+                instance = new UIUtility();
             }
             return instance;
         }
     }
 
-    private MyUtility() { }
+    private UIUtility() { }
 
     /// <summary>
     /// 判断是否在UI组件上点击,点击阶段为Began

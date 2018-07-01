@@ -5,21 +5,21 @@ using UnityEngine;
 /// <summary>
 /// 管理AssetBundle，加载Asset的工具类，////还能继续优化加上异步加载功能
 /// </summary>
-public class LoadManager
+public class AssetBundleManager
 {
     #region 单例
-    private static LoadManager instance;
-    public static LoadManager Intance
+    private static AssetBundleManager instance;
+    public static AssetBundleManager Intance
     {
         get {
             if (instance == null)
             {
-                instance = new LoadManager();
+                instance = new AssetBundleManager();
             }
             return instance;
         }
     }
-    private LoadManager() {
+    private AssetBundleManager() {
         abDic = new Dictionary<string, AssetBundle>();
         abPath = Application.streamingAssetsPath + "/AssetBundle/";
         singleABName = "AssetBundle";
