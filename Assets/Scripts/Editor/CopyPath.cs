@@ -14,7 +14,7 @@ public class CopyPath : MonoBehaviour {
             TextEditor editor = new TextEditor();
             editor.text = result;
             editor.OnFocus();
-            editor.Copy();
+            editor.Copy();  
         }
     }
 

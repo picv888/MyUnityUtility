@@ -14,7 +14,7 @@ public static class FileTools {
     /// </summary>
     /// <param name="path"></param>
     /// <returns></returns>
-    public static string ReadJson(string path) {
+    public static string ReadFile(string path) {
         if (!File.Exists(path)) {
             return "";
         }
@@ -38,7 +38,7 @@ public static class FileTools {
     /// 把字符创写入指定路径的文件
     /// </summary>
     /// <param name="path">指定的路径</param>
-    public static void WriteJson(string path, string str) {
+    public static void WriteFile(string path, string str) {
         if (!File.Exists(path)) {
             FileStream fs = File.Create(path);
             fs.Close();
