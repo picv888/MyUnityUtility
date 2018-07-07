@@ -139,7 +139,7 @@ public class AutoWriteSettings {
 
                 for (int i = 0; i < count; i++) {
                     var dataPoint = it.GetArrayElementAtIndex(i);
-                    //Debug.Log(dataPoint.stringValue);
+                    Debug.Log(dataPoint.stringValue);
                 }
             }
         }
@@ -155,7 +155,7 @@ public class AutoWriteSettings {
                     var dataPoint = it.GetArrayElementAtIndex(i);
                     while (dataPoint.NextVisible(true)) {
                         if (dataPoint.name == "name") {
-                            //Debug.Log(dataPoint.stringValue);
+                            Debug.Log(dataPoint.stringValue);
                         }
                     }
                 }
@@ -173,7 +173,7 @@ public class AutoWriteSettings {
                 for (int i = 0; i < it.arraySize; i++) {
                     if (i == 3 || i == 6 || i == 7) continue;
                     SerializedProperty dataPoint = it.GetArrayElementAtIndex(i);
-                    //Debug.Log(dataPoint.stringValue);
+                    Debug.Log(dataPoint.stringValue);
                 }
             }
         }
@@ -202,7 +202,6 @@ public class AutoWriteSettings {
             SerializedProperty it = tagManager.GetIterator();
             while (it.NextVisible(true)) {
                 if (it.name == "m_SortingLayers") {
-                    Debug.Log("SortingLayers" + it.arraySize);
                     it.InsertArrayElementAtIndex(it.arraySize);
                     SerializedProperty dataPoint = it.GetArrayElementAtIndex(it.arraySize - 1);
                     while (dataPoint.NextVisible(true)) {
