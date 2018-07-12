@@ -48,7 +48,7 @@ public class AudioSourceManager : MonoBehaviour {
     }
 
     /// <summary>
-    /// 根据指定的路径（相对Resource）,播放音乐片段
+    /// 根据指定的路径（相对Resource，不包含文件后缀名）,播放音乐片段
     /// </summary>
     /// <returns>The play.</returns>
     /// <param name="clipPath">Clip path.</param>
@@ -60,7 +60,7 @@ public class AudioSourceManager : MonoBehaviour {
     }
 
     /// <summary>
-    /// 根据指定的路径（相对Resource）,播放背景音乐
+    /// 根据指定的路径（相对Resource，不包含文件后缀名）,播放背景音乐
     /// </summary>
     /// <returns>The play.</returns>
     /// <param name="clipPath">Clip path.</param>
@@ -74,26 +74,4 @@ public class AudioSourceManager : MonoBehaviour {
             audioSource.Play();
         }
     }
-
-    #region 测试
-    //public void OnGUI() {
-    //    if (GUILayout.Button("abc/Kardusen")) {
-    //        AudioSourceManager.Instance.PlayBGM("abc/Kardusen");
-    //    }
-
-    //    if (GUILayout.Button("abc/SnowLand")) {
-    //        AudioSourceManager.Instance.PlayBGM("abc/SnowLand");
-    //    }
-
-    //    if (GUILayout.Button("Player GunShot")) {
-    //        AudioSourceManager.Instance.PlayOneShot("Player GunShot");
-    //    }
-
-    //    if (GUILayout.Button("查看字典")) {
-    //        foreach (var item in dict) {
-    //            Debug.Log(item.Key +" : "+item.Value);
-    //        }
-    //    }
-    //}
-    #endregion
 }

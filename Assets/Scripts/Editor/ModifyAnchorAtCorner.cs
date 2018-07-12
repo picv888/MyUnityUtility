@@ -5,7 +5,7 @@ using UnityEditor;
 using UnityEngine.UI;
 
 /// <summary>
-/// 把UI游戏物体的锚框设置到自己的边框上，可以递归设置子物体
+/// 把UI游戏物体的锚框设置到自己的边框上，并且递归设置子物体
 /// </summary>
 public class ModifyAnchorAtCorner : MonoBehaviour {
 
@@ -14,9 +14,6 @@ public class ModifyAnchorAtCorner : MonoBehaviour {
 
     }
 
-    /// <summary>
-    /// 设置自己的锚框到自己的边框上
-    /// </summary>
     [MenuItem("MyUtility/SetAnchor")]
     private static void SetAnchor() {
         Transform rectTrans = Selection.activeTransform;
@@ -26,9 +23,6 @@ public class ModifyAnchorAtCorner : MonoBehaviour {
         SetAnchorAtCorner(rectTrans as RectTransform, false);
     }
 
-    /// <summary>
-    /// 递归遍历所有子物体，包括自己，将锚框设置到边框上
-    /// </summary>
     [MenuItem("MyUtility/SetAllChildAnchor")]
     private static void SetAllChildAnchor() {
         Transform rectTrans = Selection.activeTransform;
@@ -45,11 +39,13 @@ public class ModifyAnchorAtCorner : MonoBehaviour {
         rectTrans.GetWorldCorners(childV);
         Vector3[] parentV = new Vector3[4];
         parent.GetWorldCorners(parentV);
-        Vector2 v = childV[0] - parentV[0];
-        rectTrans.anchorMin = new Vector2(v.x / parent.rect.size.x, v.y / parent.rect.size.y);
-        rectTrans.anchorMax = new Vector2((childV[3] - parentV[0]).x / parent.rect.size.x, (childV[1] - parentV[0]).y / parent.rect.size.y);
-        rectTrans.offsetMin = new Vector2(0, 0);
-        rectTrans.offsetMax = new Vector2(0, 0);
+        float reciprocalParentHeight = 1f/(parentV[1].y - parentV[0].y);
+        float reciprocalParentWidth = 1f/(parentV[3].x - parentV[0].x);
+        rectTrans.anchorMin = Vector2.Scale(new Vector2(reciprocalParentWidth, reciprocalParentHeight),(childV[0]-parentV[0]));
+        rectTrans.anchorMax = Vector2.Scale(new Vector2(reciprocalParentWidth, reciprocalParentHeight), (childV[2] - parentV[0]));
+        rectTrans.anchoredPosition = new Vector2(0f, 0f);
+        rectTrans.offsetMin = new Vector2(0f, 0f);
+        rectTrans.offsetMax = new Vector2(0f, 0f);
         if (setChild) {
             for (int i = 0; i < rectTrans.childCount; i++) {
                 RectTransform rectTf = rectTrans.GetChild(i) as RectTransform;
@@ -57,4 +53,11 @@ public class ModifyAnchorAtCorner : MonoBehaviour {
             }
         }
     }
+
+    private static Vector2 GetAnchor(RectTransform rectTransform){
+        Vector2 anchor;
+        anchor.x = Mathf.Lerp(rectTransform.anchorMin.x, rectTransform.anchorMax.x, rectTransform.pivot.x);
+        anchor.y = Mathf.Lerp(rectTransform.anchorMin.y, rectTransform.anchorMax.y, rectTransform.pivot.y);
+        return anchor;
+    } 
 }

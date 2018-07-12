@@ -27,4 +27,14 @@ public class GameStart : MonoBehaviour {
         m_gameObject = gameObject;
         m_gameObject.AddComponent<AudioSourceManager>();
     }
+
+    private void Update() {
+        if(Input.GetKeyDown(KeyCode.A)){
+            AudioSourceManager.Instance.PlayOneShot("music/hit4.wav");
+        }
+        if (Input.GetKeyDown(KeyCode.D)) {
+            AudioSourceManager.Instance.PlayOneShot("music/hit3");
+        }
+
+    }
 }
