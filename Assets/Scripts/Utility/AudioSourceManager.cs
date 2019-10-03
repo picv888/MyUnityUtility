@@ -35,6 +35,7 @@ public class AudioSourceManager : MonoBehaviour {
         if (string.IsNullOrEmpty(clipPath)) {
             return null;
         }
+        // 返回键   
         AudioClip clip = null;
         if (!dict.TryGetValue(clipPath, out clip)) {
             clip = Resources.Load<AudioClip>(clipPath);
@@ -59,6 +60,12 @@ public class AudioSourceManager : MonoBehaviour {
         }
     }
 
+    public void PlayOneShot(AudioClip clip) {
+        if (clip != null) {
+            audioSource.PlayOneShot(clip);
+        }
+    }
+
     /// <summary>
     /// 根据指定的路径（相对Resource，不包含文件后缀名）,播放背景音乐
     /// </summary>
@@ -66,6 +73,16 @@ public class AudioSourceManager : MonoBehaviour {
     /// <param name="clipPath">Clip path.</param>
     public void PlayBGM(string clipPath){
         AudioClip clip = GetAudioClip(clipPath);
+        if (clip != null) {
+            if (audioSource.clip == clip && audioSource.isPlaying) {
+                return;
+            }
+            audioSource.clip = clip;
+            audioSource.Play();
+        }
+    }
+
+    public void PlayBGM(AudioClip clip) {
         if (clip != null) {
             if (audioSource.clip == clip && audioSource.isPlaying) {
                 return;

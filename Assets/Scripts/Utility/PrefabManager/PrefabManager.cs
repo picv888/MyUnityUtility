@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 使用预制体的路径写在这个类，使用属性获取预制体，实现懒加载
+/// </summary>
 public class PrefabManager{
     private static PrefabManager instance;
 

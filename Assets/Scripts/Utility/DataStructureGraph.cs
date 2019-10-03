@@ -2,6 +2,22 @@
 using UnityEngine;
 
 /// <summary>
+/// 图的接口IGraph<T> 
+/// </summary>
+public interface IGraph<T> {
+    //获取顶点数
+    int GetNumOfVertex();
+    //获取边或弧的数目
+    int GetNumOfEdge();
+    //在两个顶点之间添加权为v的边或弧，顶点v1指向顶点v2
+    void SetEdge(Node<T> v1, Node<T> v2, int v);
+    //删除两个顶点之间的边或弧，顶点v1指向顶点v2
+    void DelEdge(Node<T> v1, Node<T> v2);
+    //判断两个顶点之间是否有边或弧，顶点v1指向顶点v2
+    bool IsEdge(Node<T> v1, Node<T> v2);
+}
+
+/// <summary>
 /// 该类表示图的一个顶点
 /// </summary>
 public class Node<T> {
@@ -32,23 +48,6 @@ public class Node<T> {
         }
     }
 }
-
-/// <summary>
-/// 图的接口IGraph<T> 
-/// </summary>
-public interface IGraph<T> {
-    //获取顶点数
-    int GetNumOfVertex();
-    //获取边或弧的数目
-    int GetNumOfEdge();
-    //在两个顶点之间添加权为v的边或弧，顶点v1指向顶点v2
-    void SetEdge(Node<T> v1, Node<T> v2, int v);
-    //删除两个顶点之间的边或弧，顶点v1指向顶点v2
-    void DelEdge(Node<T> v1, Node<T> v2);
-    //判断两个顶点之间是否有边或弧，顶点v1指向顶点v2
-    bool IsEdge(Node<T> v1, Node<T> v2);
-}
-
 
 /// <summary>
 /// 用邻接矩阵表示图(有向图、无向图、网 都适用)

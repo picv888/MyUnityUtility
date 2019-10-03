@@ -10,15 +10,16 @@ public class TagManagerData {
     /// </summary>
     public static string[] tags = new string[]{
         "Player",
-        "Enemy"
+        "Enemy",
     };
 
     /// <summary>
     /// 自定义SortingLayer数据
     /// </summary>
     public static string[] sortingLayers = new string[]{
-        "Player",
         "Background",
+        "Enemy",
+        "Player",
         "Foreground",
     };
 
@@ -54,8 +55,8 @@ public class AutoWriteSettings {
             AddTag(tag);
         }
 
-        foreach (var sortingLayer in TagManagerData.sortingLayers) {
-            AddSortingLayer(sortingLayer);
+        for (int i = 0; i < TagManagerData.sortingLayers.Length; i++) {
+            AddSortingLayer(TagManagerData.sortingLayers[i], i + 1);
         }
 
         foreach (var layer in TagManagerData.layers) {
@@ -196,7 +197,7 @@ public class AutoWriteSettings {
         }
     }
 
-    static void AddSortingLayer(string sortingLayer) {
+    static void AddSortingLayer(string sortingLayer, int uniqueID) {
         if (!isHasSortingLayer(sortingLayer)) {
             SerializedObject tagManager = new SerializedObject(AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/TagManager.asset")[0]);
             SerializedProperty it = tagManager.GetIterator();
@@ -207,10 +208,12 @@ public class AutoWriteSettings {
                     while (dataPoint.NextVisible(true)) {
                         if (dataPoint.name == "name") {
                             dataPoint.stringValue = sortingLayer;
-                            tagManager.ApplyModifiedProperties();
-                            return;
+                        }
+                        if (dataPoint.name == "uniqueID") {
+                            dataPoint.intValue = uniqueID;
                         }
                     }
+                    tagManager.ApplyModifiedProperties();
                 }
             }
         }
