@@ -13,7 +13,7 @@ public class Demo1GameStart : MonoBehaviour {
         GameObject cube = RegularPolygonCube.CreateRegularPolygonCube(listCenter, 0.5f, 10);
         //使物体可以被拖动
         if (null != cube) {
-            cube.AddComponent<DragGameObject>();
+            cube.AddComponent<GameObjectDragable>();
         }
     }
 

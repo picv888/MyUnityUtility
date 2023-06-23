@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 /// <summary>
-/// 使3D、2D游戏物体可以被拖动
+/// 使3D、2D游戏物体可以被鼠标拖动
 /// </summary>
-public class DragGameObject : MonoBehaviour, IDragHandler {
+public class GameObjectDragable : MonoBehaviour, IDragHandler {
     public Camera cam;//拍摄这个物体的相机
     private void Awake() {
         //获取拍摄这个物体的摄像机
